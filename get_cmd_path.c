@@ -41,6 +41,7 @@ CommandResult get_cmd_path(char *cmd)
 		_strncat(filepath, cmd, _strlen(cmd));
 		if (stat(filepath, &st) == 0)
 		{
+			free(result.path);
 			result.path = filepath;
 			result.found = 1;
 			free(pathcpy);
