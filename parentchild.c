@@ -35,7 +35,14 @@ int parentchild(char **tokens, char **argv)
 				exit_code = executer(tokens, argv);
 			else
 			{
-				wait(&status); }}
+				wait(&status);
+				if (WIFEXITED(status))
+					exit_code = WEXITSTATUS(status);
+				else if (WIFSIGNALED(status))
+					exit_code = WTERMSIG(status);
+				else if (WIFSTOPPED(status))
+					exit_code = WSTOPSIG(status);
+			}}
 		else
 		{
 			perror(argv[0]);

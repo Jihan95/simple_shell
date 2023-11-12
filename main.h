@@ -38,7 +38,7 @@ int executer(char **args, char **argv);
 CommandResult get_cmd_path(char *cmd);
 void _freetokens(char **tokens);
 char **decisionmaker(char **tokens);
-int __exit(char **cmdexit, char** argv);
+int __exit(char **cmdexit, char** argv, int exit_code);
 int get_input(char **line);
 void _printenv(void);
 int parentchild(char **tokens, char **argv);
