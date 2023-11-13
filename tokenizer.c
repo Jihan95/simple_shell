@@ -15,7 +15,7 @@ char **tokenizer(char *str)
 	strcopy = strdup(str);
 	if (strcopy == NULL)
 		return (NULL);
-	token = strtok(strcopy, " ");
+	token = _strtok(strcopy, " ");
 	while (token != NULL)
 	{
 		wrds = (char **)realloc(wrds, (count + 1) * sizeof(char *));
@@ -32,12 +32,12 @@ char **tokenizer(char *str)
 			free(wrds);
 			return (NULL); }
 		count++;
-		token = strtok(NULL, " "); }
+		token = _strtok(NULL, " "); }
 	free(strcopy);
 	wrds = (char **)realloc(wrds, (count + 1) * sizeof(char *));
 	if (wrds == NULL)
 	{
-		for (i = 0; wrds[i] != NULL; i++)
+		for (i = 0; i < count; i++)
 			free(wrds[i]);
 		free(wrds);
 		return (NULL); }

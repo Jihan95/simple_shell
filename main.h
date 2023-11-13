@@ -8,6 +8,7 @@
 #include <sys/wait.h>
 #include <sys/stat.h>
 #include <errno.h>
+#define DEFAULT_LINE_SIZE 128
 extern char **environ;
 
 /**
@@ -38,11 +39,14 @@ int executer(char **args, char **argv);
 CommandResult get_cmd_path(char *cmd);
 void _freetokens(char **tokens);
 char **decisionmaker(char **tokens);
-int __exit(char **cmdexit, char** argv, int exit_code);
+int __exit(char **cmdexit, char **argv, int exit_code);
 int get_input(char **line);
 void _printenv(void);
 int parentchild(char **tokens, char **argv);
 
-int exit_error(char **cmd_exit, char**argv);
+char *_strtok(char *str, const char *delimiters);
+ssize_t _getline(char **lineptr, size_t *n, FILE *stream);
+
+int exit_error(char **cmd_exit, char **argv);
 void command_error(char **tokens, char **argv);
 #endif

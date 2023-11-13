@@ -10,7 +10,7 @@
 CommandResult get_cmd_path(char *cmd)
 {
 	char *pathvar = NULL, *pathcpy = NULL, *token, *filepath;
-	int cmdlen = _strlen(cmd), tokenlen;
+	int cmdlen = strlen(cmd);
 	struct stat st;
 	CommandResult result;
 
@@ -19,24 +19,24 @@ CommandResult get_cmd_path(char *cmd)
 	if (cmd == NULL)
 		return (result);
 	pathvar = getenv("PATH");
-	result.path = _strdup(cmd);
+	result.path = strdup(cmd);
 	if (stat(result.path, &st) == 0)
 	{
 		result.found = 1;
 		return (result); }
 	if (pathvar == NULL)
 		return (result);
-	pathcpy = _strdup(pathvar);
-	token = strtok(pathcpy, ":");
+	pathcpy = strdup(pathvar);
+	token = _strtok(pathcpy, ":");
 	while (token != NULL)
 	{
-		tokenlen = _strlen(token);
-		filepath = (char *)malloc((cmdlen + tokenlen + 2) * sizeof(char));
+		filepath = (char *)malloc((cmdlen + _strlen(token) + 2) * sizeof(char));
 		if (filepath == NULL)
 		{
+			free(result.path);
 			free(pathcpy);
 			return (result); }
-		_strncat(filepath, token, tokenlen);
+		_strncat(filepath, token, _strlen(token));
 		_strncat(filepath, "/", 1);
 		_strncat(filepath, cmd, _strlen(cmd));
 		if (stat(filepath, &st) == 0)
@@ -47,6 +47,6 @@ CommandResult get_cmd_path(char *cmd)
 			free(pathcpy);
 			return (result); }
 		free(filepath);
-		token = strtok(NULL, ":"); }
+		token = _strtok(NULL, ":"); }
 	free(pathcpy);
 	return (result); }

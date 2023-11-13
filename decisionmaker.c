@@ -9,7 +9,7 @@
 
 char **decisionmaker(char **token)
 {
-	int i = 0;
+	int i = 0, j;
 
 	if (*token == NULL)
 		return (token);
@@ -22,15 +22,19 @@ char **decisionmaker(char **token)
 		{
 			token = (char **)realloc(token, (i + 1) * sizeof(char *));
 			if (token == NULL)
-				return (NULL);
-			token[1] = "0";
-			token[2] = "a";
+			{
+				for (j = 0; j < i; j++)
+					free(token[i]);
+				free(token);
+				return (NULL); }
+			token[1] = _strdup("0");
+			token[2] = _strdup("a");
 			return (token); }
 		if (i == 3)
 		{
 			if (_strcmp(token[1], "0") == 0)
-				token[2] = "a";
-			token[2] = "b";
+				token[2] = _strdup("a");
+			token[2] = _strdup("b");
 			return (token); }
 		if (i > 3)
 			return (token); }
@@ -38,7 +42,7 @@ char **decisionmaker(char **token)
 	{
 		if (i == 2)
 		{
-			token[1] = "a";
+			token[1] = _strdup("a");
 			return (token); }
 		if (i > 2)
 			return (token); }
