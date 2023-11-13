@@ -10,7 +10,7 @@
 CommandResult get_cmd_path(char *cmd)
 {
 	char *pathvar = NULL, *pathcpy = NULL, *token, *filepath;
-	int cmdlen = strlen(cmd);
+	int filepathlen = 0;
 	struct stat st;
 	CommandResult result;
 
@@ -30,15 +30,14 @@ CommandResult get_cmd_path(char *cmd)
 	token = _strtok(pathcpy, ":");
 	while (token != NULL)
 	{
-		filepath = (char *)malloc((cmdlen + _strlen(token) + 2) * sizeof(char));
+		filepathlen = strlen(cmd) + strlen(token) + 2;
+		filepath = (char *)malloc(filepathlen * sizeof(char));
 		if (filepath == NULL)
 		{
 			free(result.path);
 			free(pathcpy);
 			return (result); }
-		_strncat(filepath, token, _strlen(token));
-		_strncat(filepath, "/", 1);
-		_strncat(filepath, cmd, _strlen(cmd));
+		snprintf(filepath, filepathlen, "%s/%s", token, cmd);
 		if (stat(filepath, &st) == 0)
 		{
 			free(result.path);
