@@ -34,7 +34,7 @@ int _cd(char **argv, char **av)
 				exit_code = _cdError(av); }
 		else if (stat(argv[1], &st) != 0)
 		{
-			fprintf(stderr, "%s cd: %s: No such file or directory\n", av[0], argv[1]);
+			fprintf(stderr, "%s: 1: cd: can't cd to %s\n", av[0], argv[1]);
 			return (1); }
 		if (stat(argv[1], &st) == 0 && exit_code != 1)
 			directory = argv[1]; }
