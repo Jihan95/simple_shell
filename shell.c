@@ -28,6 +28,10 @@ int main(__attribute__((unused))int argc, char **argv)
 		{
 			_printenv();
 			continue; }
+		if (_strcmp(tokens[0], "cd") == 0)
+		{
+			exit_code = _cd(tokens, argv);
+			continue; }
 		exit_code = parentchild(tokens, argv);
 		_freetokens(tokens); }
 	if (isatty(STDIN_FILENO))
