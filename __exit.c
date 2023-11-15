@@ -16,14 +16,20 @@ int __exit(char **cmdexit, char **argv, int exit_code)
 	if (_strcmp(cmdexit[2], "a") == 0)
 	{
 		if (exit_code != 0)
-			exit(exit_code);
+		{
+			_freetokens(cmdexit);
+			exit(exit_code); }
 		else
-			exit(0); }
+		{
+			_freetokens(cmdexit);
+			exit(0); }}
 	if (strncmp(cmdexit[2], "b", 1) == 0)
 	{
 		charvalue = atoi(cmdexit[1]);
 		if (charvalue > 0)
-			exit(charvalue);
+		{
+			_freetokens(cmdexit);
+			exit(charvalue); }
 		else
 			ex = exit_error(cmdexit, argv); }
 return (ex); }
