@@ -45,7 +45,7 @@ char **decisionmaker(char **token)
 				token[3] = NULL; }
 			else
 			{
-				token[2] = _strdup("b");
+				token[2] = strdup("b");
 				token[3] = NULL; }
 			return (token); }}
 	return (token); }

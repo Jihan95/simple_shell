@@ -26,14 +26,8 @@ typedef struct command
 
 
 
-int _putchar(char c);
-char *_strcpy(char *dest, char *src);
 int _strlen(char *s);
-int _atoi(char *s);
-char *_strdup(char *str);
-char *_strncat(char *dest, char *src, int n);
 int _strcmp(const char *s1, const char *s2);
-void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size);
 
 
 char **tokenizer(char *str);

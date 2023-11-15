@@ -26,7 +26,7 @@ int __exit(char **cmdexit, char **argv, int exit_code, char *line)
 			_freetokens(cmdexit);
 			free(line);
 			exit(0); }}
-	if (strncmp(cmdexit[2], "b", 1) == 0)
+	if (_strcmp(cmdexit[2], "b") == 0)
 	{
 		charvalue = atoi(cmdexit[1]);
 		if (charvalue > 0)
