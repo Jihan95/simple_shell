@@ -22,7 +22,7 @@ int main(__attribute__((unused))int argc, char **argv)
 			continue;
 		if (_strcmp(tokens[0], "exit") == 0)
 		{
-			exit_code = __exit(tokens, argv, exit_code);
+			exit_code = __exit(tokens, argv, exit_code, line);
 			_freetokens(tokens);
 			continue; }
 		if (_strcmp(tokens[0], "env") == 0)
