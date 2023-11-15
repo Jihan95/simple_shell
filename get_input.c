@@ -16,7 +16,7 @@ int get_input(char **line)
 	if (isatty(STDIN_FILENO))
 		printf("%s", prompt);
 	rby = _getline(line, &n, stdin);
-	if (rby == EOF || rby == '\0')
+	if (rby == EOF || rby == '\0' || (*line)[0] == '\n')
 		return (-1);
 	(*line)[strcspn(*line, "\n")] = '\0';
 	return (0); }
