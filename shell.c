@@ -41,8 +41,8 @@ int main(__attribute__((unused))int argc, char **argv)
 			free(line);
 			continue; }
 		exit_code = parentchild(tokens, argv);
-		_freetokens(tokens);
-		free(line); }
+		_freetokens(tokens); }
 	if (isatty(STDIN_FILENO))
 		printf("\n");
+	free(line);
 	exit(exit_code); }
