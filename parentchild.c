@@ -15,13 +15,14 @@ int parentchild(char **tokens, char **argv)
 	CommandResult cm;
 
 	cm = get_cmd_path(tokens[0]);
+	free(tokens[0]);
+	tokens[0] = cm.path;
 	if (cm.found == 0)
 	{
 		command_error(tokens, argv);
 		exit_code = 127; }
 	else if (cm.found == 1 && cm.path != NULL)
 	{
-		tokens[0] = cm.path;
 		if (access(tokens[0], X_OK) == 0)
 		{
 			pid = fork();

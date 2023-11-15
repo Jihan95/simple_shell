@@ -19,22 +19,30 @@ int main(__attribute__((unused))int argc, char **argv)
 			break;
 		tokens = tokenizer(line);
 		if (*tokens == NULL)
-			continue;
+		{
+			free(line);
+			continue; }
 		if (_strcmp(tokens[0], "exit") == 0)
 		{
 			exit_code = __exit(tokens, argv, exit_code);
+			_freetokens(tokens);
+			free(line);
 			continue; }
 		if (_strcmp(tokens[0], "env") == 0)
 		{
 			_printenv();
+			_freetokens(tokens);
+			free(line);
 			continue; }
 		if (_strcmp(tokens[0], "cd") == 0)
 		{
 			exit_code = _cd(tokens, argv);
+			_freetokens(tokens);
+			free(line);
 			continue; }
 		exit_code = parentchild(tokens, argv);
-		_freetokens(tokens); }
+		_freetokens(tokens);
+		free(line); }
 	if (isatty(STDIN_FILENO))
 		printf("\n");
-	free(line);
 	exit(exit_code); }
